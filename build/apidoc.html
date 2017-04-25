@@ -87,32 +87,6 @@
 
     </ol></li>
 
-    <li class="apidocModuleLi"><a href="#apidoc.module.node-celery.createClient">module node-celery.createClient</a><ol>
-
-        <li>
-
-            <a class="apidocElementLiA" href="#apidoc.element.node-celery.createClient.createClient">
-            function <span class="apidocSignatureSpan">node-celery.</span>createClient
-            <span class="apidocSignatureSpan">(config, callback)</span>
-            </a>
-
-        </li>
-
-    </ol></li>
-
-    <li class="apidocModuleLi"><a href="#apidoc.module.node-celery.createResult">module node-celery.createResult</a><ol>
-
-        <li>
-
-            <a class="apidocElementLiA" href="#apidoc.element.node-celery.createResult.createResult">
-            function <span class="apidocSignatureSpan">node-celery.</span>createResult
-            <span class="apidocSignatureSpan">(taskId, client)</span>
-            </a>
-
-        </li>
-
-    </ol></li>
-
     <li class="apidocModuleLi"><a href="#apidoc.module.node-celery.protocol">module node-celery.protocol</a><ol>
 
         <li>
@@ -143,21 +117,21 @@
     return new Client(config, callback);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
+var purl = url.parse(broker_url);
+var database;
 
-## Usage
+if (purl.pathname) {
+  database = purl.pathname.slice(1);
+}
 
-Simple example, included as [examples/hello-world.js](https://github.com/mher/node-celery/blob/master/examples/hello-world.js):
+self.redis = redis.<span class="apidocCodeKeywordSpan">createClient</span>(purl.port || 6379,
+                                purl.hostname || &#x27;localhost&#x27;);
 
-```javascript
-var celery = require(&#x27;node-celery&#x27;),
-	client = celery.<span class="apidocCodeKeywordSpan">createClient</span>({
-		CELERY_BROKER_URL: &#x27;amqp://guest:guest@localhost:5672//&#x27;,
-		CELERY_RESULT_BACKEND: &#x27;amqp&#x27;
-	});
-
-client.on(&#x27;error&#x27;, function(err) {
-	console.log(err);
-});
+if (purl.auth) {
+    debug(&#x27;Authenticating broker...&#x27;);
+    self.redis.auth(purl.auth.split(&#x27;:&#x27;)[1]);
+    debug(&#x27;Broker authenticated...&#x27;);
+}
 ...</pre></li>
     </ul>
 
@@ -177,62 +151,6 @@ client.on(&#x27;error&#x27;, function(err) {
     </ul>
 
 
-
-
-</div>
-
-<div class="apidocSectionDiv">
-<h1><a href="#apidoc.module.node-celery.createClient" id="apidoc.module.node-celery.createClient">module node-celery.createClient</a></h1>
-
-
-    <h2>
-        <a href="#apidoc.element.node-celery.createClient.createClient" id="apidoc.element.node-celery.createClient.createClient">
-        function <span class="apidocSignatureSpan">node-celery.</span>createClient
-        <span class="apidocSignatureSpan">(config, callback)</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">createClient = function (config, callback) {
-    return new Client(config, callback);
-}</pre></li>
-    <li>example usage<pre class="apidocCodePre">...
-
-## Usage
-
-Simple example, included as [examples/hello-world.js](https://github.com/mher/node-celery/blob/master/examples/hello-world.js):
-
-```javascript
-var celery = require(&#x27;node-celery&#x27;),
-	client = celery.<span class="apidocCodeKeywordSpan">createClient</span>({
-		CELERY_BROKER_URL: &#x27;amqp://guest:guest@localhost:5672//&#x27;,
-		CELERY_RESULT_BACKEND: &#x27;amqp&#x27;
-	});
-
-client.on(&#x27;error&#x27;, function(err) {
-	console.log(err);
-});
-...</pre></li>
-    </ul>
-
-
-</div>
-
-<div class="apidocSectionDiv">
-<h1><a href="#apidoc.module.node-celery.createResult" id="apidoc.module.node-celery.createResult">module node-celery.createResult</a></h1>
-
-
-    <h2>
-        <a href="#apidoc.element.node-celery.createResult.createResult" id="apidoc.element.node-celery.createResult.createResult">
-        function <span class="apidocSignatureSpan">node-celery.</span>createResult
-        <span class="apidocSignatureSpan">(taskId, client)</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">createResult = function (taskId, client) {
-    return new Result(taskId, client);
-}</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
-    </ul>
 
 
 </div>
