@@ -1,4 +1,7 @@
-# api documentation for  [node-celery (v0.2.8)](https://github.com/mher/node-celery)  [![npm package](https://img.shields.io/npm/v/npmdoc-node-celery.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-node-celery) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-node-celery.svg)](https://travis-ci.org/npmdoc/node-npmdoc-node-celery)
+# npmdoc-node-celery
+
+#### basic api documentation for  [node-celery (v0.2.8)](https://github.com/mher/node-celery)  [![npm package](https://img.shields.io/npm/v/npmdoc-node-celery.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-node-celery) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-node-celery.svg)](https://travis-ci.org/npmdoc/node-npmdoc-node-celery)
+
 #### Celery client for Node
 
 [![NPM](https://nodei.co/npm/node-celery.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/node-celery)
@@ -110,7 +113,8 @@
     "scripts": {
         "test": "mocha tests"
     },
-    "version": "0.2.8"
+    "version": "0.2.8",
+    "bin": {}
 }
 ```
 
